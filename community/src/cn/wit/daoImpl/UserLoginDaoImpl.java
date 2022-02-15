@@ -12,7 +12,6 @@ import cn.wit.dao.UserLoginDao;
 import cn.wit.pojo.User;
 
 public class UserLoginDaoImpl implements UserLoginDao{
-
 	@Override
 	public User selectUsersByUserNameAndUserPwd(String uname, String pwd) {
 		 Connection conn=null;
@@ -22,7 +21,7 @@ public class UserLoginDaoImpl implements UserLoginDao{
          try {
              conn= JdbcUtil.getConn();
              conn.setAutoCommit(false);
-             String sql = "select uid,username,password,age,sex,birthday from user where username=? and password=?";
+             String sql = "select uid,username,password from user where username=? and password=?";
              ps = JdbcUtil.getPreSta(conn, sql);
              ps.setString(1, uname);
  			 ps.setString(2, pwd);
@@ -32,9 +31,6 @@ public class UserLoginDaoImpl implements UserLoginDao{
             	 u.setUserid(rs.getInt("uid"));
             	 u.setUsername(rs.getString("username"));
             	 u.setPassword(rs.getString("password"));
-            	 u.setAge(rs.getInt("age"));
-            	 u.setSex(rs.getString("sex"));
-            	 u.setBirthday(rs.getDate("birthday"));
              }
              conn.commit();
              JdbcUtil.closeAll(conn,null,ps);

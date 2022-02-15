@@ -9,6 +9,6 @@
 </head>
 <body>
 ${user.username} 欢迎回来
-<a href="http://localhost:9090/login/logout.do">退出登录</a>
+<a href="http://localhost:9090/community/logout.do">退出登录</a>
 </body>
 </html>

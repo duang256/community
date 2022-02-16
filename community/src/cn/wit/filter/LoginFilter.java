@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import cn.wit.pojo.User;
+
 @WebFilter(urlPatterns = {"*.do"})
 public class LoginFilter implements Filter {
 
@@ -29,12 +31,12 @@ public class LoginFilter implements Filter {
 		request.setCharacterEncoding("utf-8");
         String uri = request.getRequestURI();
         System.out.println(uri);
-		if(uri.indexOf("validateCode.do") != -1 || uri.indexOf("login.do") != -1 || uri.indexOf("adminLogin.do") != -1){
+		if(uri.indexOf("validateCode.do") != -1 || uri.indexOf("login.do") != -1 || uri.indexOf("adminLogin.do") != -1 || uri.indexOf("userRegister.do") != -1){
 			chain.doFilter(req, resp);
 			return;
 		}
-		String str = (String)session.getAttribute("login");
-		if(str != null && str.equals("yes")) chain.doFilter(req, resp);
+		User user = (User) session.getAttribute("user");
+		if(user != null) chain.doFilter(req, resp);
 	}
 	
 	@Override

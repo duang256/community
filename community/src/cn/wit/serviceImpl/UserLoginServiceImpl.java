@@ -8,15 +8,20 @@ import cn.wit.exception.UserNotFoundException;
 import cn.wit.pojo.User;
 
 public class UserLoginServiceImpl implements UserLoginService{
-	UserLoginDao ld = new UserLoginDaoImpl();
+	UserLoginDao userLoginDao = new UserLoginDaoImpl();
 	
 	@Override
 	public User userLogin(String username, String password) {
-		UserLoginDao userLoginDao = new UserLoginDaoImpl();
         User user = userLoginDao.selectUsersByUserNameAndUserPwd(username, password);
         if(user == null){
             throw new UserNotFoundException("用户名或密码有误！");
         }
         return user;
+	}
+
+	@Override
+	public User selectUserInfo(User user) {
+		User userinfo = userLoginDao.selectUserInfo(user);
+		return userinfo;
 	}
 }

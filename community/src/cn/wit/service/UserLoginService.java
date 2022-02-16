@@ -4,4 +4,6 @@ import cn.wit.pojo.User;
 
 public interface UserLoginService {
 	User userLogin(String uname,String pwd);
+	
+	User selectUserInfo(User user);
 }

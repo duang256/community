@@ -10,5 +10,23 @@
 <body>
 ${user.username} 欢迎回来
 <a href="http://localhost:9090/community/logout.do">退出登录</a>
+<form action="" method="post">
+    <%--隐藏用户的id--%>
+    <input type="hidden" name="id" value="${user.userid}">
+
+	    ${user.username}<br>
+	    ${user.password}<br>
+	    ${user.name}<br>
+	    ${user.sex}<br>
+	    ${user.identityNumber}<br>
+	    ${user.phoneNumber}<br>
+	    ${user.communityInfo.communityname}<br>
+	    ${user.communityInfo.location}<br>
+	    ${user.household.unit}<br>
+	    ${user.household.buliding}<br>
+	    ${user.household.room}<br>
+	   <a href="http://localhost:8080/community/todayEpidemic.do">今日疫情</a>
+	    
+</form>
 </body>
 </html>

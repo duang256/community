@@ -4,4 +4,5 @@ import cn.wit.pojo.User;
 
 public interface UserLoginDao {
 	User selectUsersByUserNameAndUserPwd(String uname,String pwd);
+	User selectUserInfo(User user);
 }

@@ -44,10 +44,11 @@ public class UserLoginServlet extends HttpServlet {
                 User user = userLoginService.userLogin(username, password);
                 
                 //留着写user其他信息封装
+                user = userLoginService.selectUserInfo(user);
                 
+                //存储user其他信息
+                session.setAttribute("user", user);
                 
-                //存储成功的字符串
-			    session.setAttribute("login", "yes");
                 
                 //建立客户端与服务端的会话状态
 				//使用重定向方式跳转首页

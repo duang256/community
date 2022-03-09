@@ -1,0 +1,146 @@
+@CHARSET "UTF-8";
+* {
+    font-family: "Microsoft YaHei",sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/bg-zh-wu-1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*第1层*/
+.table {
+    display: table;
+    width: 100vw;
+    height: 100vh;
+    margin: 5px;
+    background-image: linear-gradient(90deg,#d7ede2,#014872);
+
+}
+.div-body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.panel-login {
+    width: 758px;
+    height: 420px;
+    background-color: #ffffff;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 12px 12px 16px 8px rgba(0,0,0,0.3);
+
+}
+.panel-login-left {
+    width: 40%;
+    height: 100%;
+    float: left;
+    border-radius: 15px 0 0 15px;
+    /*水平居中*/
+    text-align: center;
+    vertical-align: middle;
+    background-color: #006566;
+}
+
+.panel-login-left a {
+    color: #006566;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 36px;
+    text-shadow: 6px 6px 6px rgba(78,42,64,0.4);
+}
+.panel-login-left a:hover {
+    color: #7b130a;
+}
+.panel-login-right {
+    width: 60%;
+    height: 420px;
+    float: right;
+    text-align: center;
+}
+.panel-login-right {
+    background-position: top,left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.input-type-login {
+    width: 80%;
+    height: 420px;
+
+}
+.input-type-login p {
+    font-size: 38px;
+    color: #2e2f1f;
+    text-shadow: 6px 6px 6px rgba(78,42,64,0.4);
+}
+/*input控件样式*/
+.input-type-login .input {
+    width: 100%;
+    margin-bottom: 12px;
+    margin-left: 32px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 28px;
+    outline: none;
+}
+/*文本框样式*/
+.text-style {
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    border-radius: 28px;
+    border: 1px solid #408080;
+    padding-left: 32px;
+}
+.text-style:hover {
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+    border-radius: 28px;
+    border: 2px solid #408080;
+    padding-left: 32px;
+}
+/*按钮样式*/
+.button-style {
+    color: #dae5e7;
+	border:none;
+    background-image: linear-gradient(90deg,#006566,#014871);
+    transition-duration: 0.5s;
+}
+.button-style:hover{
+    background-image: linear-gradient(90deg,#014872,#aoeacf);
+    color: #e3f9fd;
+}
+.input-type-login .a-register {
+width: 100%;
+color: #006566;
+text-decoration:none;
+}
+.input-type-login .a-register:hover {
+width: 100%;
+color: #408080;
+text-decoration:none;
+}
+
+
+.panel-other {
+    float: right;
+    width: 100px;
+    height: 100vh;
+    /* background-color: #c84064; */
+
+}
+.panel-other-top {
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.panel-other-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

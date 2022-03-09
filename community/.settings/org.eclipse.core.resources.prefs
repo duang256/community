@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
-encoding//WebContent/adminLogin.jsp=UTF-8
+encoding//WebContent/admin/adminLogin.jsp=UTF-8
+encoding//WebContent/admin/css/style.css=UTF-8
+encoding//WebContent/css/style.css=UTF-8
+encoding//WebContent/js/jquery.js=UTF-8
 encoding//WebContent/register.jsp=UTF-8

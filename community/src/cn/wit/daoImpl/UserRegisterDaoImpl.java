@@ -19,32 +19,62 @@ public class UserRegisterDaoImpl implements UserRegisterDao{
         try {
             conn= JdbcUtil.getConn();
             conn.setAutoCommit(false);
-            //添加社区
-            String communityinfoSql = "insert into communityinfo(communityid,communityname,location) values(default,?,?)";
-            ps = JdbcUtil.getPreSta(conn, communityinfoSql);
+            
+          //添加社区
+            String communitynameSql = "select communityid from communityinfo where communityname = ?";
+            ps = JdbcUtil.getPreSta(conn, communitynameSql);
             ps.setString(1, u.getCommunityInfo().getCommunityname());
-            ps.setString(2,u.getCommunityInfo().getLocation());
-            ps.execute();
+            rs = ps.executeQuery();
+            int communityid = -1;
+            while(rs.next()){
+            	communityid = rs.getInt("communityid");
+            }
             
-            ps = JdbcUtil.getPreSta(conn,"select LAST_INSERT_ID()");
-            rs= ps.executeQuery();
-            rs.next();
-            int communityid = rs.getInt("LAST_INSERT_ID()");
+            System.out.println("communityid" + communityid);
+            
+            if(communityid == -1){
+            	 //添加社区
+                String communityinfoSql = "insert into communityinfo(communityid,communityname,location) values(default,?,?)";
+                ps = JdbcUtil.getPreSta(conn, communityinfoSql);
+                ps.setString(1, u.getCommunityInfo().getCommunityname());
+                ps.setString(2,u.getCommunityInfo().getLocation());
+                ps.execute();
+                
+                ps = JdbcUtil.getPreSta(conn,"select LAST_INSERT_ID()");
+                rs= ps.executeQuery();
+                rs.next();
+                communityid = rs.getInt("LAST_INSERT_ID()");
+            }
             
             
             
-            //添加住址
-            String houseHold = "insert into household(householdid,unit,building,room) values(default,?,?,?)";
-            ps = JdbcUtil.getPreSta(conn, houseHold);
+            
+            String householdSql = "select householdid from household where unit = ? and building=? and room = ?";
+            ps = JdbcUtil.getPreSta(conn, householdSql);
             ps.setString(1, u.getHousehold().getUnit());
             ps.setInt(2, u.getHousehold().getBuliding());
             ps.setInt(3, u.getHousehold().getRoom());
-            ps.execute();
-            
-            ps = JdbcUtil.getPreSta(conn,"select LAST_INSERT_ID()");
             rs = ps.executeQuery();
-            rs.next();
-            int householdid = rs.getInt("LAST_INSERT_ID()");
+            int householdid = -1;
+            while(rs.next()){
+            	householdid = rs.getInt("householdid");
+            }
+            
+            System.out.println("householdid" + householdid);
+            if(householdid == -1){
+            	//添加住址
+                String houseHold = "insert into household(householdid,unit,building,room) values(default,?,?,?)";
+                ps = JdbcUtil.getPreSta(conn, houseHold);
+                ps.setString(1, u.getHousehold().getUnit());
+                ps.setInt(2, u.getHousehold().getBuliding());
+                ps.setInt(3, u.getHousehold().getRoom());
+                ps.execute();
+                
+                ps = JdbcUtil.getPreSta(conn,"select LAST_INSERT_ID()");
+                rs = ps.executeQuery();
+                rs.next();
+                householdid = rs.getInt("LAST_INSERT_ID()");
+            }
             
             
             //添加用户

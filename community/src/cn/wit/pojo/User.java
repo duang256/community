@@ -16,40 +16,12 @@ public class User {
 	private Date secondVaccine;
 	private Date thirdVaccine;
 	private Date latestDetection;
-	private List<Route> routeid;
+	private List<Route> routeList;
 	private ConcentrationQuarantine	concentrationQuarantine;
 	private HomeQuarantime homeQuarantime;
 	private HouseHold household;
 	private CommunityInfo communityInfo;
 	private List<Temperature> temperatureList;
-	public User(int userid, String username, String password, String name, int sex, String identityNumber,
-			String phoneNumber, String status, Date firstVaccine, Date secondVaccine, Date thirdVaccine,
-			Date latestDetection, List<Route> routeid, ConcentrationQuarantine concentrationQuarantine,
-			HomeQuarantime homeQuarantime, HouseHold household, CommunityInfo communityInfo,
-			List<Temperature> temperatureList) {
-		super();
-		this.userid = userid;
-		this.username = username;
-		this.password = password;
-		this.name = name;
-		this.sex = sex;
-		this.identityNumber = identityNumber;
-		this.phoneNumber = phoneNumber;
-		this.status = status;
-		this.firstVaccine = firstVaccine;
-		this.secondVaccine = secondVaccine;
-		this.thirdVaccine = thirdVaccine;
-		this.latestDetection = latestDetection;
-		this.routeid = routeid;
-		this.concentrationQuarantine = concentrationQuarantine;
-		this.homeQuarantime = homeQuarantime;
-		this.household = household;
-		this.communityInfo = communityInfo;
-		this.temperatureList = temperatureList;
-	}
-	public User() {
-		super();
-	}
 	public int getUserid() {
 		return userid;
 	}
@@ -122,11 +94,11 @@ public class User {
 	public void setLatestDetection(Date latestDetection) {
 		this.latestDetection = latestDetection;
 	}
-	public List<Route> getRouteid() {
-		return routeid;
+	public List<Route> getRouteList() {
+		return routeList;
 	}
-	public void setRouteid(List<Route> routeid) {
-		this.routeid = routeid;
+	public void setRouteList(List<Route> routeList) {
+		this.routeList = routeList;
 	}
 	public ConcentrationQuarantine getConcentrationQuarantine() {
 		return concentrationQuarantine;
@@ -158,10 +130,44 @@ public class User {
 	public void setTemperatureList(List<Temperature> temperatureList) {
 		this.temperatureList = temperatureList;
 	}
+	public User(int userid, String username, String password, String name, int sex, String identityNumber,
+			String phoneNumber, String status, Date firstVaccine, Date secondVaccine, Date thirdVaccine,
+			Date latestDetection, List<Route> routeList, ConcentrationQuarantine concentrationQuarantine,
+			HomeQuarantime homeQuarantime, HouseHold household, CommunityInfo communityInfo,
+			List<Temperature> temperatureList) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.name = name;
+		this.sex = sex;
+		this.identityNumber = identityNumber;
+		this.phoneNumber = phoneNumber;
+		this.status = status;
+		this.firstVaccine = firstVaccine;
+		this.secondVaccine = secondVaccine;
+		this.thirdVaccine = thirdVaccine;
+		this.latestDetection = latestDetection;
+		this.routeList = routeList;
+		this.concentrationQuarantine = concentrationQuarantine;
+		this.homeQuarantime = homeQuarantime;
+		this.household = household;
+		this.communityInfo = communityInfo;
+		this.temperatureList = temperatureList;
+	}
+	public User() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", name=" + name
+				+ ", sex=" + sex + ", identityNumber=" + identityNumber + ", phoneNumber=" + phoneNumber + ", status="
+				+ status + ", firstVaccine=" + firstVaccine + ", secondVaccine=" + secondVaccine + ", thirdVaccine="
+				+ thirdVaccine + ", latestDetection=" + latestDetection + ", routeList=" + routeList
+				+ ", concentrationQuarantine=" + concentrationQuarantine + ", homeQuarantime=" + homeQuarantime
+				+ ", household=" + household + ", communityInfo=" + communityInfo + ", temperatureList="
+				+ temperatureList + "]";
+	}
 	
-	
-	
-	
-
 	
 }

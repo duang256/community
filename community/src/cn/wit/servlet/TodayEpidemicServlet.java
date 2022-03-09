@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import cn.wit.pojo.Admin;
 import cn.wit.pojo.User;
 import cn.wit.service.TodayEpidemicService;
 import cn.wit.serviceImpl.TodayEpidemicServiceImpl;
@@ -32,7 +33,13 @@ public class TodayEpidemicServlet extends HttpServlet {
 		
 		User user = (User) session.getAttribute("user");
 		
-		int[] todayEpidemic = service.TodayEpidemic(user.getCommunityInfo());
+		Admin admin = (Admin)session.getAttribute("admin");
+		int[] todayEpidemic = null;
+		
+		if(user != null) todayEpidemic = service.TodayEpidemic(user.getCommunityInfo());
+		else if(admin != null) todayEpidemic = service.TodayEpidemic(admin.getCommunityInfo());
+		
+		
 		
 		request.setAttribute("todayEpidemic", todayEpidemic);
 		

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cn.wit.common.*;
@@ -48,17 +47,17 @@ public class UserLoginServlet extends HttpServlet {
                 
                 //存储user其他信息
                 session.setAttribute("user", user);
-                
+                session.setAttribute("login", "yes");
                 
                 //建立客户端与服务端的会话状态
 				//使用重定向方式跳转首页
-                resp.sendRedirect("main.jsp");
+                resp.sendRedirect("index.jsp");
            }else{
                req.setAttribute(Constants.REQUEST_MSG,"验证码有误，请重新输入");
                req.getRequestDispatcher("login.jsp").forward(req,resp);
            }	
         }catch(UserNotFoundException e){
-           req.setAttribute("msg",e.getMessage());
+           req.setAttribute(Constants.REQUEST_MSG,e.getMessage());
            req.getRequestDispatcher("login.jsp").forward(req,resp);
         }catch (Exception e){
             e.printStackTrace();

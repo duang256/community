@@ -35,8 +35,10 @@ public class LoginFilter implements Filter {
 			chain.doFilter(req, resp);
 			return;
 		}
-		User user = (User) session.getAttribute("user");
-		if(user != null) chain.doFilter(req, resp);
+		String status = (String) session.getAttribute("login");
+		
+		
+		if(status.equals("yes")) chain.doFilter(req, resp);
 	}
 	
 	@Override

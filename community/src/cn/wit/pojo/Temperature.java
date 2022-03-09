@@ -6,16 +6,7 @@ public class Temperature {
 	private int tid;
 	private double temperature;
 	private Date date;
-	
-	public Temperature() {
-		super();
-	}
-	public Temperature(int tid, double temperature, Date date) {
-		super();
-		this.tid = tid;
-		this.temperature = temperature;
-		this.date = date;
-	}
+	private int uid;
 	public int getTid() {
 		return tid;
 	}
@@ -34,4 +25,22 @@ public class Temperature {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+	public Temperature(int tid, double temperature, Date date, int uid) {
+		super();
+		this.tid = tid;
+		this.temperature = temperature;
+		this.date = date;
+		this.uid = uid;
+	}
+	public Temperature() {
+		super();
+	}
+	
+	
 }

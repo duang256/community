@@ -32,8 +32,8 @@ public class UserRegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String sex = request.getParameter("sex");
-        String identitynumber = request.getParameter("identitynumber");
-        String phonenumber = request.getParameter("phonenumber");
+        String identitynumber = request.getParameter("identityNumber");
+        String phonenumber = request.getParameter("phoneNumber");
         String communityname = request.getParameter("communityname");
         String location = request.getParameter("location");
         String unit = request.getParameter("unit");
@@ -48,13 +48,19 @@ public class UserRegisterServlet extends HttpServlet {
 			user.setUsername(username);
 			user.setPassword(password);
 			user.setName(name);
-			user.setSex(Integer.parseInt(sex));
+			//test 
+			System.out.println(sex);
+			user.setSex(Integer.parseInt(sex));  //ÐÔ±ð 1ÄÐ  0Å®
 			user.setIdentityNumber(identitynumber);
 			user.setPhoneNumber(phonenumber);
 			community.setCommunityname(communityname);
 			community.setLocation(location);
 			household.setUnit(unit);
-			household.setBuliding(Integer.parseInt(building));
+			
+			//test 
+			System.out.println(building);
+			System.out.println(room);
+			household.setBuliding(Integer.parseInt(building));   
 			household.setRoom(Integer.parseInt(room));
 			user.setCommunityInfo(community);
 			user.setHousehold(household);

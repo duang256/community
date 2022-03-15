@@ -27,7 +27,7 @@ public class DateToStringServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		if(user.getLatestDetection() != null){
 			Date date = user.getLatestDetection();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String string = sdf.format(date);
 			request.setAttribute("date", string);
 			System.out.println(string);

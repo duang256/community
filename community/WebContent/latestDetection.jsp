@@ -15,10 +15,9 @@
 	<hr>
 	<div class="block">
 		<label>最近一次提交核酸检测结果时间：</label>
-		<input type="datetime-local" value="${date}" readonly><br>
+		<input type="text" value="${date}" readonly><br>
 		<form action="latestDetection.do" method="post">
-			<label>更新最近一次核酸检测时间：
-			</label>
+			<label>更新最近一次核酸检测时间：</label>
 			<input type="datetime-local" name="latestDetection">
 			<input type="submit" style="margin-left:20px; margin-top:20px;" value="更新">
 		</form>

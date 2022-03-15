@@ -20,10 +20,10 @@ import cn.wit.serviceImpl.AllUserPageServiceImpl;
 import cn.wit.serviceImpl.UpdateQuarantineServiceImpl;
 
 /**
- * Servlet implementation class UpdateHomeQuarantime
+ * Servlet implementation class Update
  */
-@WebServlet("/updateHomeQuarantime.do")
-public class UpdateHomeQuarantimeServlet extends HttpServlet {
+@WebServlet("/updateHomeQuarantine.do")
+public class UpdateHomeQuarantineServlet extends HttpServlet {
 	
 	private UpdateQuarantineService quarantineService = new UpdateQuarantineServiceImpl();
 	private AllUserPageService userPageService = new AllUserPageServiceImpl();
@@ -41,7 +41,8 @@ public class UpdateHomeQuarantimeServlet extends HttpServlet {
 		
 		String status = request.getParameter("status");
 		
-		String uid = request.getParameter("uid");
+		String uid = (String) request.getParameter("id");
+		System.out.println(uid);
 		String starttime = request.getParameter("starttime");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	    Date dateParse;
@@ -56,10 +57,10 @@ public class UpdateHomeQuarantimeServlet extends HttpServlet {
 	    int communityid = admin.getCommunityInfo().getCommunityid();
 	    String pageNumber=request.getParameter("pageNumber");
 		String pageSize=request.getParameter("pageSize");
-	    PageInfo pi = userPageService.selectQuarantineUserPage(communityid, pageNumber, pageSize);
+	    PageInfo pi = userPageService.selectHomeQuarantineUserPage(communityid, pageNumber, pageSize);
 	    
 	    request.setAttribute("pi", pi);
-	    request.getRequestDispatcher("/main.jsp").forward(request, response);
+	    request.getRequestDispatcher("admin/allUserPage.jsp").forward(request, response);
 	}
 
 }

@@ -84,73 +84,7 @@ public class UserPageDaoImpl implements UserPageDao {
 		return count;
 	}
 
-	@Override
-	public List<User> selectQuarantineUserPageByCommunityId(int communityid, PageInfo pi) {
-		UserLoginDao userloginDao = new UserLoginDaoImpl();
-		// 先遍历所有社区内用户uid，然后查询所有用户信息
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		Admin admin = null;
-		List<User> userList = new ArrayList<User>();
-		try {
-			conn = JdbcUtil.getConn();
-			conn.setAutoCommit(false);
-			String sql = "select uid from user where communityid = ? and ( isNull(homeid) or isNull(concentrationid)) limit ?,?";
-			ps = JdbcUtil.getPreSta(conn, sql);
-			ps.setInt(1, communityid);
-			ps.setObject(2, pi.getStartNumber());
-			ps.setObject(3, pi.getPageSize());
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				User user = new User();
-				user.setUserid(rs.getInt("uid"));
-				User u = userloginDao.selectUserInfo(user);
-				userList.add(u);
-			}
-			conn.commit();
-			JdbcUtil.closeAll(conn, null, ps);
-			return userList;
-		} catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-			e.printStackTrace();
-		}
-		return userList;
-	}
 
-	@Override
-	public int quarantineUsercount(int communityid) {
-		Connection conn = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		int count = 0;
-		try {
-			conn = JdbcUtil.getConn();
-			conn.setAutoCommit(false);
-			String sql = "select count(*) from user where communityid = ? and ( isNull(homeid) or isNull(concentrationid))";
-			ps = JdbcUtil.getPreSta(conn, sql);
-			ps.setInt(1, communityid);
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				count = rs.getInt(1);
-			}
-			conn.commit();
-			JdbcUtil.closeAll(conn, null, ps);
-			return count;
-		} catch (SQLException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException ex) {
-				ex.printStackTrace();
-			}
-			e.printStackTrace();
-		}
-		return count;
-	}
 
 	@Override
 	public List<User> selectVaccineUserPageByCommunityId(int communityid, PageInfo pi) {
@@ -220,4 +154,210 @@ public class UserPageDaoImpl implements UserPageDao {
 		return count;
 	}
 
+	@Override
+	public List<User> selAllVaccineUserPageByCommunityId(int communityid, PageInfo pi) {
+		UserLoginDao userloginDao = new UserLoginDaoImpl();
+		// 先遍历所有社区内用户uid，然后查询所有用户信息
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Admin admin = null;
+		List<User> userList = new ArrayList<User>();
+		try {
+			conn = JdbcUtil.getConn();
+			conn.setAutoCommit(false);
+			String sql = "select uid from user where communityid = ? limit ?,?";
+			ps = JdbcUtil.getPreSta(conn, sql);
+			ps.setInt(1, communityid);
+			ps.setObject(2, pi.getStartNumber());
+			ps.setObject(3, pi.getPageSize());
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setUserid(rs.getInt("uid"));
+				User u = userloginDao.selectUserInfo(user);
+				userList.add(u);
+			}
+			conn.commit();
+			JdbcUtil.closeAll(conn, null, ps);
+			return userList;
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return userList;
+	}
+
+	@Override
+	public int allVaccineUsercount(int communityid) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			conn = JdbcUtil.getConn();
+			conn.setAutoCommit(false);
+			String sql = "select count(*) from user where communityid = ?";
+			ps = JdbcUtil.getPreSta(conn, sql);
+			ps.setInt(1, communityid);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+			conn.commit();
+			JdbcUtil.closeAll(conn, null, ps);
+			return count;
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public List<User> selectHomeQuarantineUserPageByCommunityId(int communityid, PageInfo pi) {
+		UserLoginDao userloginDao = new UserLoginDaoImpl();
+		// 先遍历所有社区内用户uid，然后查询所有用户信息
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Admin admin = null;
+		List<User> userList = new ArrayList<User>();
+		try {
+			conn = JdbcUtil.getConn();
+			conn.setAutoCommit(false);
+			String sql = "select uid from user where communityid = ? and (homeid is Not Null)  limit ?,?";
+			ps = JdbcUtil.getPreSta(conn, sql);
+			ps.setInt(1, communityid);
+			ps.setObject(2, pi.getStartNumber());
+			ps.setObject(3, pi.getPageSize());
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				User user = new User();
+				user.setUserid(rs.getInt("uid"));
+				User u = userloginDao.selectUserInfo(user);
+				userList.add(u);
+			}
+			conn.commit();
+			JdbcUtil.closeAll(conn, null, ps);
+			return userList;
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return userList;
+	}
+
+	@Override
+	public int homeQuarantineUsercount(int communityid) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			conn = JdbcUtil.getConn();
+			conn.setAutoCommit(false);
+			String sql = "select count(*) from user where communityid = ? and (homeid is Not Null) ";
+			ps = JdbcUtil.getPreSta(conn, sql);
+			ps.setInt(1, communityid);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+			conn.commit();
+			JdbcUtil.closeAll(conn, null, ps);
+			return count;
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return count;
+	}
+
+	@Override
+	public List<User> selectConcentrationQuarantineUserPageByCommunityId(int communityid, PageInfo pi) {
+		UserLoginDao userloginDao = new UserLoginDaoImpl();
+		// 先遍历所有社区内用户uid，然后查询所有用户信息
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Admin admin = null;
+		List<User> userList = new ArrayList<User>();
+		try {
+			conn = JdbcUtil.getConn();
+			conn.setAutoCommit(false);
+			String sql = "select uid from user where communityid = ? and  (concentrationid is Not Null)  limit ?,?";
+			ps = JdbcUtil.getPreSta(conn, sql);
+			ps.setInt(1, communityid);
+			ps.setObject(2, pi.getStartNumber());
+			ps.setObject(3, pi.getPageSize());
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				User user = new User();
+				user.setUserid(rs.getInt("uid"));
+				User u = userloginDao.selectUserInfo(user);
+				userList.add(u);
+			}
+			conn.commit();
+			JdbcUtil.closeAll(conn, null, ps);
+			return userList;
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return userList;
+	}
+
+	@Override
+	public int concentrationQuarantineUsercount(int communityid) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			conn = JdbcUtil.getConn();
+			conn.setAutoCommit(false);
+			String sql = "select count(*) from user where communityid = ? and  (concentrationid is Not Null) ";
+			ps = JdbcUtil.getPreSta(conn, sql);
+			ps.setInt(1, communityid);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+			conn.commit();
+			JdbcUtil.closeAll(conn, null, ps);
+			return count;
+		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		return count;
+	}
+	
 }

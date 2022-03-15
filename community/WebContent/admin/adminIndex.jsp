@@ -44,8 +44,9 @@
 				</div>
 				<div class="tab">
 					<a class="tab_content" href="../allUserPage.do" target="context">住户信息</a>
-					<a class="tab_content" href="../vaccineUserPage.do" target="context">疫苗接种信息</a>
-					<a class="tab_content" href="/community/excelUpload.jsp" target="context">excel表导入</a>
+					<a class="tab_content" href="vaccinePage.jsp" target="context">疫苗接种信息</a>
+					<a class="tab_content" href="excelUpload.jsp" target="context">excel表导入</a>
+						<a class="tab_content" href="quarantine.jsp" target="context">隔离</a>
 				</div>
 			</div>
 

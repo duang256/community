@@ -20,6 +20,9 @@
 			<th>手机号</th>
 			<th>状态</th>
 			<th>最近一次核酸检测时间</th>
+			<th>隔离状态</th>
+			<th></th>
+			<th></th>
 		</tr>
 
 		<c:forEach items="${pi.list}" var="user">
@@ -32,46 +35,50 @@
 				<td>${user.phoneNumber}</td>
 				<td>${user.status}</td>
 				<td>${user.latestDetection}</td>
+				<td><c:if test="${not empty user.homeQuarantine}">居家隔离</c:if> <c:if
+						test="${not empty user.concentrationQuarantine}">集中隔离</c:if> <c:if
+						test="${empty user.homeQuarantine && empty user.concentrationQuarantine}">未隔离</c:if>
+				</td>
+
+
+
+				<td><c:if
+						test="${empty user.homeQuarantine &&  empty user.concentrationQuarantine}">
+						<form action="/community/getHomeId.do" method="post">
+							<input type="hidden" name="id" value="${user.userid}"><br>
+							<input type="submit" value="设为居家隔离" />
+						</form>
+					</c:if></td>
+				<td><c:if
+						test="${empty user.homeQuarantine &&  empty user.concentrationQuarantine}">
+						<form action="/community/getConcentrationId.do" method="post">
+							<input type="hidden" name="id" value="${user.userid}"><br>
+							<input type="submit" value="设为集中隔离" />
+						</form>
+					</c:if></td>
+
 			</tr>
 		</c:forEach>
 
 	</table>
-	<a
-		href="/community/allUserPage.do?pageNumber=${pi.pageNumber-1 }&pageSize=${pi.pageSize}"
-		<c:if test="${pi.pageNumber<= 1}"> onclick="javascript:return false;" </c:if>>上一页</a>
+	<br>
+
+
 	<a
 		href="/community/allUserPage.do?pageNumber=${pi.pageNumber+1 }&pageSize=${pi.pageSize}"
-		<c:if test="${pi.pageNumber>= pi.total}"> onclick="javascript:return false;" </c:if>>下一页</a>
-		
-		
-		<table id="uservaccine" border="0">
-			<tr>
-				<th>用户名</th>
-				<th>姓名</th>
-				<th>第一针</th>
-				<th>第二针</th>
-				<th>第三针</th>
-			</tr>
-			<c:forEach items="${pi.list}" var="user">
-				<tr>
-					<td>${user.username}</td>
-					<td>${user.name}</td>
-					<td>${user.firstVaccine}</td>
-					<td>${user.secondVaccine}</td>
-					<td>${user.thirdVaccine}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		
+		<c:if test="${pi.pageNumber>= pi.total}"> onclick="javascript:return false;" </c:if>>
+		<input type="submit" class="pagination" value="下一页" />
+	</a>
 	<a
-		href="vaccineUserPage.do?pageNumber=${pi.pageNumber-1 }&pageSize=${pi.pageSize}"
-		<c:if test="${pi.pageNumber<= 1}"> onclick="javascript:return false;" </c:if>>上一页</a>
-	<a
-		href="vaccineUserPage.do?pageNumber=${pi.pageNumber+1 }&pageSize=${pi.pageSize}"
-		<c:if test="${pi.pageNumber>= pi.total}"> onclick="javascript:return false;" </c:if>>下一页</a>
-		
-		
-		
-		
+		href="/community/allUserPage.do?pageNumber=${pi.pageNumber-1 }&pageSize=${pi.pageSize}"
+		<c:if test="${pi.pageNumber<= 1}"> onclick="javascript:return false;" </c:if>><input
+		type="submit" class="pagination" value="上一页" /></a>
+
+
+
+
+
+
+
 </body>
 </html>

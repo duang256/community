@@ -38,7 +38,7 @@ public class UpdateConcentrationQuarantineServlet extends HttpServlet {
 		String status = request.getParameter("status");
 		
 		
-		String uid = request.getParameter("uid");
+		String uid = request.getParameter("id");
 		String starttime = request.getParameter("starttime");
 		System.out.println(starttime);
 		String quarantineaddress = request.getParameter("quarantineaddress");
@@ -55,7 +55,8 @@ public class UpdateConcentrationQuarantineServlet extends HttpServlet {
 	    int communityid = admin.getCommunityInfo().getCommunityid();
 	    String pageNumber=request.getParameter("pageNumber");
 		String pageSize=request.getParameter("pageSize");
-	    PageInfo pi = userPageService.selAllUserByPage(communityid, pageNumber, pageSize);
+		
+	    PageInfo pi = userPageService.selAllUserByPage(communityid, "", "");
 	    
 	    request.setAttribute("pi", pi);
 	    request.getRequestDispatcher("admin/allUserPage.jsp").forward(request, response);

@@ -20,6 +20,7 @@
 							<input type="text" placeholder="请输入用户名" name="username" class="text-style input"> <br> 
 							<input type="password" placeholder="请输入密码" name="password" class="text-style input"> <br> 
 							<input type="submit" value="登录" class="button-style input"> <br>
+							<font color = "red">${msg}</font>
 						</form>
 
 					</div>

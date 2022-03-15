@@ -106,18 +106,92 @@ hr {
 	margin-left: 15px;
 }
 
+
+
+/* 用户信息 */
+#allUser {
+	border-collapse: collapse;
+	width: 1200px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+#allUser tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#allUser td {
+	text-align: left;
+	padding: 8px;
+}
+
+#allUser th {
+	text-align: left;
+	padding: 8px;
+	background-color: #006566;
+	color: white;
+}
+
+#allUser tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+
+
+
 /*疫苗界面顶部水平导航栏 */
 ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+	width: 1054px;
+    list-style-type: none;
+    margin: 10px 10px 0 10px;
+    padding: 0;
+    overflow: hidden;
+    background-color: #004a4a;
 }
 
 li {
-	display: inline;
+    float: left;
 }
 
-/* 疫苗情况 */
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #006566;
+}
+
+
+
+/* 未接种完疫苗情况 */
+#unuservaccine {
+	border-collapse: collapse;
+	width: 600px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+#unuservaccine tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#unuservaccine td {
+	text-align: left;
+	padding: 8px;
+}
+
+#unuservaccine th {
+	text-align: left;
+	padding: 8px;
+	background-color: #006566;
+	color: white;
+}
+
+/* 所有用户疫苗情况 */
 #uservaccine {
 	border-collapse: collapse;
 	width: 600px;
@@ -145,33 +219,9 @@ li {
 	background-color: #f2f2f2;
 }
 
-/* 用户信息 */
-#allUser {
-	border-collapse: collapse;
-	width: 1400px;
-	margin-left: 20px;
-	margin-top: 20px;
-}
 
-#allUser tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
 
-#allUser td {
-	text-align: left;
-	padding: 8px;
-}
 
-#allUser th {
-	text-align: left;
-	padding: 8px;
-	background-color: #006566;
-	color: white;
-}
-
-#allUser tr:nth-child(even) {
-	background-color: #f2f2f2;
-}
 
 /* 统一布局样式 */
 .block {
@@ -200,6 +250,9 @@ input#announcetime {
 	margin-left: 0.2cm;
 	margin-right: 6px;
 }
+
+
+
 
 /* 统一输入框样式 */
 input[type="text"], input[type="date"] {
@@ -266,4 +319,10 @@ input[type="submit"]:hover {
 	background-color: #006566;
 	border: 1px solid #C6C6C6;
 	color: #ffffff;
+}
+
+/*分页按钮样式 */
+.pagination{
+	float: right;
+	margin: 20px;
 }

@@ -42,10 +42,13 @@ public class AdminLoginServlet extends HttpServlet {
 
 			session.setAttribute("admin", admin);
 			session.setAttribute("login", "yes");
+			
+			req.getSession().setAttribute(Constants.REQUEST_MSG, "");
 			resp.sendRedirect("admin/adminIndex.jsp");
+			
 		} catch (AdminNotFoundException e) {
-			req.setAttribute(Constants.REQUEST_MSG, e.getMessage());
-			req.getRequestDispatcher("admin/adminIndex.jsp").forward(req, resp);
+			req.getSession().setAttribute(Constants.REQUEST_MSG, e.getMessage());
+			resp.sendRedirect("admin/adminLogin.jsp");
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.sendRedirect("error.jsp");

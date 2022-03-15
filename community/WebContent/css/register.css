@@ -7,39 +7,17 @@
 #reg_header {
 	height: 110px;
 	width: 100%;
+	padding:20px;
 	box-shadow: 0px 0px 10px #006566;
 	background-image: linear-gradient(90deg,#006566,#014872);
 }
 
-#reg_header .reg_h_center {
-	width: 1200px;
-	height: 110px;
-	margin: 0 auto;
-	display: flex;
-}
-
-#reg_header .reg_h_left {
-	height: 110px;
-	flex: 1;
-}
-
-#reg_header .reg_h_left h3 {
-	float: left;
-	margin-top: 80px;
-	margin-left: 10px;
-}
-
-#reg_header .reg_h_right {
-	height: 110px;
-	flex: 1;
-	padding-top: 50px;
-	padding-left: 30px;
-}
 
 .reg_back {
 	/*设置整体的尺寸、背景色、边距等*/
+	display: flex;
 	width: 850px;
-	height: 730px;
+	height: 900px;
 	border: 8px solid #eeeeee;
 	background: #ffffff;
 	margin: auto;
@@ -64,16 +42,13 @@
 	font-size: 20px;
 }
 
-.reg_center {
-	/*设置中间的各种输入框等*/
-	float: left;
-	width: 450px;
-}
+
 
 .reg_right {
 	/*设置右边段落浮动和外间距*/
 	float: right;
 	margin: 40px;
+	flex: 0 0 auto;
 }
 
 .reg_right>p:first-child {
@@ -83,20 +58,9 @@
 .reg_right p a {
 	/*设置超链接（立即登录）颜色*/
 	color: #006566;
+	text-decoration: none;
 }
 
-.td_left {
-	/*设置表单中字体对齐方式和宽度、高度*/
-	width: 130px;
-	text-align: right;
-	height: 40px;
-    padding-top: 22px;
-}
-
-.td_right {
-	/*设置输入框内边距*/
-	padding-left: 10px;
-}
 
 #username, #password, #name, #identityNumber, #phoneNumber, #communityname, #location, #unit, #building, #communityname,#room
 	{
@@ -108,26 +72,40 @@
 	border-radius: 8px;
 	padding-left: 10px;
 	margin-top: 22px;
+	background-color: #ffffff;
+	background-color: -internal-light-dark(rgb(255, 255, 255), rgba(70, 90, 126, 0.4)) !important;
 	
 }
 
+.reg_center {
+	padding: 15px 0 15px 0;
+	display: block;
+	margin: 8px;
+	flex-grow: 1;
+}
 
-
+label {
+	padding: 20px 0 20px 0;
+	width: 170px;
+	display: inline-block;
+	text-align: right;
+	font-family: "Microsoft YaHei", Times, serif;
+	display: inline-block;
+}
 
 #btn_sub {
 	/*注册按钮*/
-	margin-left: 50px;
+	margin: 30px;
 	background: #006566;
 	color: whitesmoke;
 	width: 150px;
 	height: 40px;
 	border: 1px solid gray;
-	margin-top: 22px;
+	margin-left: 160px;
 }
 
 h2{
 	font-size:2.375em;
 	text-align: center;
-	margin-top:27px;
 	color: #ffffff;
 }

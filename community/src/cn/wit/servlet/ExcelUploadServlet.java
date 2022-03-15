@@ -45,11 +45,11 @@ public class ExcelUploadServlet extends HttpServlet {
 	        System.out.println("size:" + fileItemList.size());
 	        InputStream is = fileItemList.get(0).getInputStream();
 	        ExcelToModelListUtil.getList(is);
-	        request.setAttribute("msg", "导入成功");
-		    request.getRequestDispatcher("/excelUpload.jsp").forward(request,response);
+	        request.setAttribute("excelMsg", "导入成功!");
+		    request.getRequestDispatcher("admin/excelUpload.jsp").forward(request,response);
 	    } catch (FileUploadException e) {
-	    	request.setAttribute("msg", "导入失败");
-	        request.getRequestDispatcher("/excelUpload.jsp").forward(request,response);
+	    	request.setAttribute("excelMsg", "导入失败!");
+	        request.getRequestDispatcher("admin/excelUpload.jsp").forward(request,response);
 	    }
 	}
 }

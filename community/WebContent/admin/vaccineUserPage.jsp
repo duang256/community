@@ -9,34 +9,44 @@
 <link rel="stylesheet" href="./admin/css/style.css" />
 </head>
 <body>
-	<div class="nav">疫苗接种信息></div>
-	<hr>
 	<table id="uservaccine" border="0">
 		<tr>
-			<th>用户名</th>
 			<th>姓名</th>
 			<th>第一针</th>
 			<th>第二针</th>
 			<th>第三针</th>
+			<th>电话</th>
 		</tr>
 		<c:forEach items="${pi.list}" var="user">
 			<tr>
-				<td>${user.username}</td>
 				<td>${user.name}</td>
-				<td>${user.firstVaccine}</td>
-				<td>${user.secondVaccine}</td>
-				<td>${user.thirdVaccine}</td>
+				<td>
+					<c:if test="${empty user.firstVaccine}">未接种</c:if> 
+					<c:if test="${not empty user.firstVaccine}">${user.firstVaccine}</c:if>
+				</td>
+				<td>
+					<c:if test="${empty user.secondVaccine}">未接种</c:if> 
+					<c:if test="${not empty user.secondVaccine}">${user.secondVaccine}</c:if>
+				</td>
+				<td>
+					<c:if test="${empty user.thirdVaccine}">未接种</c:if> 
+					<c:if test="${not empty user.thirdVaccine}">${user.thirdVaccine}</c:if>
+				</td>
+				<td>${user.phoneNumber}</td>
 			</tr>
 		</c:forEach>
 	</table>
-		
+
 	<a
-		href="vaccineUserPage.do?vpageNumber=${pi.pageNumber-1 }&vpageSize=${pi.pageSize}"
-		<c:if test="${pi.pageNumber<= 1}"> onclick="javascript:return false;" </c:if>>上一页</a>
+		href="/community/allVaccineUserPage.do?pageNumber=${pi.pageNumber+1 }&pageSize=${pi.pageSize}"
+		<c:if test="${pi.pageNumber>= pi.total}"> onclick="javascript:return false;" </c:if>><input
+		type="submit" class="pagination" value="下一页" /></a>
+
 	<a
-		href="vaccineUserPage.do?vpageNumber=${pi.pageNumber+1 }&vpageSize=${pi.pageSize}"
-		<c:if test="${pi.pageNumber>= pi.total}"> onclick="javascript:return false;" </c:if>>下一页</a>
-	
+		href="/community/allVaccineUserPage.do?pageNumber=${pi.pageNumber-1 }&pageSize=${pi.pageSize}"
+		<c:if test="${pi.pageNumber<= 1}"> onclick="javascript:return false;" </c:if>><input
+		type="submit" class="pagination" value="上一页" /></a>
+
 
 </body>
 </html>

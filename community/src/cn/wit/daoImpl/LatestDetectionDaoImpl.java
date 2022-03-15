@@ -1,9 +1,13 @@
 package cn.wit.daoImpl;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import cn.wit.common.JdbcUtil;
@@ -20,7 +24,16 @@ public class LatestDetectionDaoImpl implements LatestDetectionDao{
 			conn.setAutoCommit(false);
 			String sql = "update user set latestDetection=? where uid=?";
 			ps = JdbcUtil.getPreSta(conn, sql);
-			ps.setDate(1, new java.sql.Date(latestDetection.getTime()));
+			
+			try {  
+				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+			    String dateStringParse = sdf2.format(latestDetection);  
+			    System.out.println("Ê±¼ä×ª»»dao£º" + dateStringParse);  
+			} catch (Exception e) {  
+			    e.printStackTrace();  
+			}  
+			Timestamp t = new Timestamp(latestDetection.getTime());
+			ps.setObject(1, t);
 			ps.setInt(2, uid);
 			ps.executeUpdate();
 			conn.commit();

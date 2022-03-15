@@ -29,7 +29,7 @@ public class DeleteConcentrationQuarantineServlet extends HttpServlet {
 		
 		service.delConcentrationQuaratine(Integer.parseInt(uid), Integer.parseInt(concentrationid));
 		
-		request.getRequestDispatcher("quarantineUserPage.do").forward(request, response);
+		request.getRequestDispatcher("/concentrationQuarantineUserPage.do").forward(request, response);
 	}
 
 }

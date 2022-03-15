@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import cn.wit.common.JdbcUtil;
 import cn.wit.dao.UserLoginDao;
 import cn.wit.pojo.CommunityInfo;
 import cn.wit.pojo.ConcentrationQuarantine;
-import cn.wit.pojo.HomeQuarantime;
+import cn.wit.pojo.HomeQuarantine;
 import cn.wit.pojo.HouseHold;
 import cn.wit.pojo.Route;
 import cn.wit.pojo.Temperature;
@@ -92,7 +93,9 @@ public class UserLoginDaoImpl implements UserLoginDao {
 				u.setFirstVaccine(rs.getDate("firstVaccine"));
 				u.setSecondVaccine(rs.getDate("secondVaccine"));
 				u.setThirdVaccine(rs.getDate("thirdVaccine"));
-				u.setLatestDetection(rs.getDate("latestDetection"));
+				
+				Timestamp t = rs.getTimestamp("latestDetection");
+				u.setLatestDetection(t);
 				communityInfo.setCommunityid(rs.getInt("communityid"));
 				communityInfo.setCommunityname(rs.getString("communityname"));
 				communityInfo.setLocation("location");
@@ -106,19 +109,26 @@ public class UserLoginDaoImpl implements UserLoginDao {
 
 				int homeid = rs.getInt("homeid");
 				int concentrationid = rs.getInt("concentrationid");
+				
+				System.out.println("ceshi homeid" + rs.getObject("homeid"));
+				System.out.println("ceshi concentrationid" + rs.getObject("concentrationid"));
+				
+				
 
 				if (rs.getObject("homeid") != null) {
 					System.out.println("homeid");
-					HomeQuarantime homeQuarantime = new HomeQuarantime();
+					HomeQuarantine HomeQuarantine = new HomeQuarantine();
 
 					String homeSql = "select homeid,starttime from homequarantine where homeid=?";
 					ps = JdbcUtil.getPreSta(conn, homeSql);
 					ps.setInt(1, homeid);
 					rs = ps.executeQuery();
-					rs.next();
-					homeQuarantime.setHomeid(rs.getInt("homeid"));
-					homeQuarantime.setStarttime(rs.getDate("starttime"));
-					u.setHomeQuarantime(homeQuarantime);
+					while(rs.next()){
+						System.out.println("进入homeid");
+						HomeQuarantine.setHomeid(rs.getInt("homeid"));
+						HomeQuarantine.setStarttime(rs.getDate("starttime"));
+						u.setHomeQuarantine(HomeQuarantine);
+					}
 
 				} else if (rs.getObject("concentrationid") != null) {
 					System.out.println("concentrationid");
@@ -127,11 +137,14 @@ public class UserLoginDaoImpl implements UserLoginDao {
 					ps = JdbcUtil.getPreSta(conn, concentrationSql);
 					ps.setInt(1, concentrationid);
 					rs = ps.executeQuery();
-					rs.next();
-					concentrationQuarantine.setConcentrationid(rs.getInt(concentrationid));
-					concentrationQuarantine.setStarttime(rs.getDate("starttime"));
-					concentrationQuarantine.setQuarantineaddress(rs.getString("quarantineaddress"));
-					u.setConcentrationQuarantine(concentrationQuarantine);
+					while(rs.next()){
+						System.out.println("进入concentrationid");
+						concentrationQuarantine.setConcentrationid(rs.getInt("concentrationid"));
+						concentrationQuarantine.setStarttime(rs.getDate("starttime"));
+						concentrationQuarantine.setQuarantineaddress(rs.getString("quarantineaddress"));
+						u.setConcentrationQuarantine(concentrationQuarantine);
+					}
+					
 				}
 			}
 			

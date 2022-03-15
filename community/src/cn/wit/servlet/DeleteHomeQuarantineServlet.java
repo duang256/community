@@ -29,7 +29,7 @@ public class DeleteHomeQuarantineServlet extends HttpServlet {
 		
 		service.delHomeQuarantine(Integer.parseInt(uid), Integer.parseInt(homeid));
 		
-		request.getRequestDispatcher("/quarantineUserPage.do").forward(request, response);
+		request.getRequestDispatcher("/homeQuarantineUserPage.do").forward(request, response);
 	}
 
 }

@@ -20,33 +20,35 @@ import cn.wit.serviceImpl.AllUserPageServiceImpl;
 import cn.wit.serviceImpl.UpdateQuarantineServiceImpl;
 
 /**
- * Servlet implementation class UpdateConcentrationQuarantineServlet
+ * Servlet implementation class Update
  */
-@WebServlet("/updateConcentrationQuarantine.do")
-public class UpdateConcentrationQuarantineServlet extends HttpServlet {
+@WebServlet("/updateHomeQuarantine.do")
+public class UpdateHomeQuarantineServlet extends HttpServlet {
+	
 	private UpdateQuarantineService quarantineService = new UpdateQuarantineServiceImpl();
 	private AllUserPageService userPageService = new AllUserPageServiceImpl();
-	
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		doGet(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession  session = request.getSession();
 		Admin admin = (Admin) session.getAttribute("admin");
 		
 		String status = request.getParameter("status");
 		
-		
-		String uid = request.getParameter("id");
+		String uid = (String) request.getParameter("id");
+		System.out.println(uid);
 		String starttime = request.getParameter("starttime");
-		System.out.println(starttime);
-		String quarantineaddress = request.getParameter("quarantineaddress");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	    Date dateParse;
 	    try {
 			dateParse = sdf.parse(starttime);
-			quarantineService.updateConcentrationQuarantine(Integer.parseInt(uid), dateParse, quarantineaddress, status);
+			quarantineService.updateHomeQuarantine(Integer.parseInt(uid), dateParse, status);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,8 +57,7 @@ public class UpdateConcentrationQuarantineServlet extends HttpServlet {
 	    int communityid = admin.getCommunityInfo().getCommunityid();
 	    String pageNumber=request.getParameter("pageNumber");
 		String pageSize=request.getParameter("pageSize");
-		
-	    PageInfo pi = userPageService.selAllUserByPage(communityid, "", "");
+	    PageInfo pi = userPageService.selectHomeQuarantineUserPage(communityid, pageNumber, pageSize);
 	    
 	    request.setAttribute("pi", pi);
 	    request.getRequestDispatcher("admin/allUserPage.jsp").forward(request, response);

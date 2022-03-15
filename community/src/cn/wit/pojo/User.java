@@ -18,10 +18,16 @@ public class User {
 	private Date latestDetection;
 	private List<Route> routeList;
 	private ConcentrationQuarantine	concentrationQuarantine;
-	private HomeQuarantime homeQuarantime;
+	private HomeQuarantine homeQuarantine;
 	private HouseHold household;
 	private CommunityInfo communityInfo;
 	private List<Temperature> temperatureList;
+	
+	
+	
+	public User() {
+		super();
+	}
 	public int getUserid() {
 		return userid;
 	}
@@ -106,11 +112,11 @@ public class User {
 	public void setConcentrationQuarantine(ConcentrationQuarantine concentrationQuarantine) {
 		this.concentrationQuarantine = concentrationQuarantine;
 	}
-	public HomeQuarantime getHomeQuarantime() {
-		return homeQuarantime;
+	public HomeQuarantine getHomeQuarantine() {
+		return homeQuarantine;
 	}
-	public void setHomeQuarantime(HomeQuarantime homeQuarantime) {
-		this.homeQuarantime = homeQuarantime;
+	public void setHomeQuarantine(HomeQuarantine homeQuarantine) {
+		this.homeQuarantine = homeQuarantine;
 	}
 	public HouseHold getHousehold() {
 		return household;
@@ -133,7 +139,7 @@ public class User {
 	public User(int userid, String username, String password, String name, int sex, String identityNumber,
 			String phoneNumber, String status, Date firstVaccine, Date secondVaccine, Date thirdVaccine,
 			Date latestDetection, List<Route> routeList, ConcentrationQuarantine concentrationQuarantine,
-			HomeQuarantime homeQuarantime, HouseHold household, CommunityInfo communityInfo,
+			HomeQuarantine homeQuarantine, HouseHold household, CommunityInfo communityInfo,
 			List<Temperature> temperatureList) {
 		super();
 		this.userid = userid;
@@ -150,23 +156,10 @@ public class User {
 		this.latestDetection = latestDetection;
 		this.routeList = routeList;
 		this.concentrationQuarantine = concentrationQuarantine;
-		this.homeQuarantime = homeQuarantime;
+		this.homeQuarantine = homeQuarantine;
 		this.household = household;
 		this.communityInfo = communityInfo;
 		this.temperatureList = temperatureList;
-	}
-	public User() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", name=" + name
-				+ ", sex=" + sex + ", identityNumber=" + identityNumber + ", phoneNumber=" + phoneNumber + ", status="
-				+ status + ", firstVaccine=" + firstVaccine + ", secondVaccine=" + secondVaccine + ", thirdVaccine="
-				+ thirdVaccine + ", latestDetection=" + latestDetection + ", routeList=" + routeList
-				+ ", concentrationQuarantine=" + concentrationQuarantine + ", homeQuarantime=" + homeQuarantime
-				+ ", household=" + household + ", communityInfo=" + communityInfo + ", temperatureList="
-				+ temperatureList + "]";
 	}
 	
 	

@@ -3,6 +3,7 @@ package cn.wit.servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -34,12 +35,23 @@ public class LatestDetectionServlet extends HttpServlet {
 		int uid = user.getUserid();
 		
 		String latestDetection = request.getParameter("latestDetection");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 	    Date dateParse;
 	    try {
 			dateParse = sdf.parse(latestDetection);
 			user.setLatestDetection(dateParse);
 			service.updateLatestDetectionDao(uid, dateParse);
+			
+			try {  
+				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");  
+			    String dateStringParse = sdf2.format(dateParse);  
+			    System.out.println("Ê±¼ä×ª»»£º" + dateStringParse);  
+			} catch (Exception e) {  
+			    e.printStackTrace();  
+			}  
+			
+			
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
